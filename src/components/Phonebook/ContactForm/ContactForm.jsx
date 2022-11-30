@@ -22,7 +22,11 @@ export const ContactForm = () => {
       name,
       number,
     };
-    if (contacts.some(contact => contact.name === name)) {
+    if (
+      contacts.some(
+        contact => contact.name.toLowerCase() === name.toLowerCase()
+      )
+    ) {
       notifyContactsRejected(name);
     } else {
       dispatch(addNewContact(contact));
