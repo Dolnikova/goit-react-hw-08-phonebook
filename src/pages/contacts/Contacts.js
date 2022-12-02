@@ -3,13 +3,21 @@ import { ContactList } from 'components/Phonebook/ContactList/ContactList';
 import { Container } from 'components/Phonebook/cotainer';
 import Filter from 'components/Phonebook/Filter/Filer';
 import { Loader } from 'components/Phonebook/Loader/Loader';
-import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
+import { fetchContacts } from 'redux/operations';
 import { getContacts, getLoading } from 'redux/selectors';
 
 const ContactsPage = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
   const contacts = useSelector(getContacts);
   const isLoading = useSelector(getLoading);
+
   return (
     <>
       <ToastContainer
